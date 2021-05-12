@@ -15,6 +15,3 @@ class Profile(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     update = models.DateTimeField(auto_now=True)
     followers = models.ManyToManyField(User, related_name="following", blank=True)
-
-    def __str__(self):
-        return self.location
