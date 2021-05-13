@@ -1,28 +1,40 @@
-import logo from './logo.svg';
+import React from 'react';
 import './styles/App.css';
-import '@fontsource/roboto';
-import { Button } from './components/button';
+import { NavBar } from './components/navBar';
 import { Home } from './pages/home';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { About } from './pages/about';
+import { Profile } from './pages/profile';
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to to to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Home />
-      <Button />
-    </div>
+    <Router>
+      <NavBar />
+      <div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
+        </ul>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

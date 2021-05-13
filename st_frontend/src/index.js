@@ -1,6 +1,8 @@
 import React from 'react';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import ReactDOM from 'react-dom';
-import '@fontsource/roboto';
+import '@fontsource/ibm-plex-mono';
 import './styles/index.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
@@ -9,14 +11,22 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const theme = createMuiTheme({
+  typography: {
+    fontfamily: 'IBM Plex Mono',
+  },
+});
+
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
     <QueryClientProvider client={queryClient}>
-      <App />
-      <ReactQueryDevtools initialIsOpen={false} />
+      <ThemeProvider theme={theme}>
+        <App />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </ThemeProvider>
     </QueryClientProvider>
     {/* </Provider> */}
   </React.StrictMode>,
