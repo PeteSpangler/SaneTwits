@@ -1,11 +1,25 @@
+@import '@fontsource/ibm-plex-mono';
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'IBM Plex Mono', 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'IBM Plex Mono';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #ac8ccc;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, 'IBM Plex Mono', Consolas, 'Courier New', monospace;
+  font-family: 'IBM Plex Mono';
 }
+
+/* Daisy Bush
+#511F96
+
+Shakespeare
+#44CACB
+
+Wisteria
+#8660B6
+
+East Side
+#AC8CCC */

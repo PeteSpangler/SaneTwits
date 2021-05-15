@@ -1,43 +1,37 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, IconButton, Typography, Toolbar } from '@material-ui/core';
+import { AppBar, Typography, Toolbar } from '@material-ui/core';
 import HomeButton from './homeButton';
-import { withRouter } from 'react-router-dom';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import ProfileButton from './profileButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    color: '#ac8ccc',
   },
 
   title: {
     flexGrow: 1,
+    fontFamily: 'IBM Plex Mono',
   },
 }));
 
-export const NavBar = withRouter(({ history }) => {
+export const NavBar = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="inherit">
+      <AppBar position="static">
         <Toolbar>
           <HomeButton />
           <Typography variant="h5" className={classes.title}>
             SaneTwits
           </Typography>
           <div>
-            <IconButton
-              onClick={() => {
-                history.push('/profile');
-              }}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
+            <ProfileButton />
           </div>
         </Toolbar>
       </AppBar>
     </div>
   );
-});
+};

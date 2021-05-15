@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken import views
+import django.contrib.auth.urls
+from profiles.views import UserCreateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/tweets/', include('tweets.urls')),
+    path('api/twits/', include('tweets.urls')),
     path('api/profiles/', include('profiles.urls')),
     path('api-auth/', include ('rest_framework.urls')),
+    path('register/', UserCreateView.as_view(), name='create_user'),
+    path('api-token-auth/', views.obtain_auth_token),
 ]

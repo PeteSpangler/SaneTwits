@@ -23,8 +23,6 @@ class TweetSerializer(serializers.ModelSerializer):
 class TweetDetailSerializer(serializers.ModelSerializer):
     user = ProfileSerializer(source='user.profile', read_only=True)
     likes = serializers.SerializerMethodField(read_only=True)
-    parent = TweetSerializer(read_only=True)
-
     class Meta:
         model = Tweet
         fields = [
@@ -34,7 +32,6 @@ class TweetDetailSerializer(serializers.ModelSerializer):
             'image',
             'likes',
             'is_retweet',
-            'parent',
             'timestamp',
         ]
 
