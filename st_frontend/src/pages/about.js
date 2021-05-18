@@ -1,11 +1,10 @@
 import React from 'react';
-import { Box, Button, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 export const About = () => {
   return (
     <Box>
-      <Typography>Heres some bullshit</Typography>
-      <Button>What am I doing?</Button>
+      <Typography>Heres some ABOUT bullshit</Typography>
     </Box>
   );
 };

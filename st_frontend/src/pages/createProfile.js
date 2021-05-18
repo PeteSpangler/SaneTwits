@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import client from '../api/client';
 import * as yup from 'yup';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { useMutation } from 'react-query';
+import { UserContext } from '../contexts/userContext';
 
 export const CreateProfile = () => {
+  const { user } = useContext(UserContext);
+
   const validationSchema = yup.object({
-    username: yup
-      .string()
-      .min(3, 'It has got to be more than 3!')
-      .max(15, 'Dont go too crazy')
-      .required('This is the whole point of the website'),
+    // username: yup
+    //   .string()
+    //   .min(3, 'It has got to be more than 3!')
+    //   .max(15, 'Dont go too crazy')
+    //   .required('This is the whole point of the website'),
 
     location: yup.string().max(30, 'Be reasonable').min(2, 'Must be at least 2 characters'),
 
@@ -24,7 +27,7 @@ export const CreateProfile = () => {
 
   const formik = useFormik({
     initialValues: {
-      username: 'Username',
+      //   username: 'Username',
       location: 'Earth',
       bio: 'I enjoy long walks on the beach, frosty beverages, cosy clothing, grilled meats and vegetables, all those kinds of things!',
     },
@@ -33,7 +36,7 @@ export const CreateProfile = () => {
       console.log(JSON.stringify(values, null, 2));
 
       mutation.mutate({
-        username: values.username,
+        user: { user },
         location: values.location,
         bio: values.bio,
       });
@@ -48,7 +51,7 @@ export const CreateProfile = () => {
     <Box>
       <Typography variant="h4">Create Profile!</Typography>
       <form onSubmit={formik.handleSubmit}>
-        <div>
+        {/* <div>
           <TextField
             fullWidth
             variant="outlined"
@@ -59,12 +62,12 @@ export const CreateProfile = () => {
             error={formik.touched.username && Boolean(formik.errors.username)}
             helperText={formik.touched.username && formik.errors.username}
           />
-        </div>
+        </div> */}
         <div>
           <TextField
             fullWidth
             variant="outlined"
-            id="outlined-multiline-static"
+            id="location-form"
             name="location"
             value={formik.values.location}
             onChange={formik.handleChange}
@@ -77,7 +80,7 @@ export const CreateProfile = () => {
             fullWidth
             rowsMax={8}
             variant="outlined"
-            id="outlined-multiline-static"
+            id="bio-form"
             name="bio"
             value={formik.values.bio}
             onChange={formik.handleChange}

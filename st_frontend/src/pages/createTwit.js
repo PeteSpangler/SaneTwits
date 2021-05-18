@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useFormik } from 'formik';
 import client from '../api/client';
 import * as yup from 'yup';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { useMutation } from 'react-query';
+import { IdContext, UserContext } from '../contexts/userContext';
 
 export const CreateTwit = () => {
+  const { user } = useContext(UserContext);
+  const { id } = useContext(IdContext);
+
   const validationSchema = yup.object({
     content: yup
       .string(`What's going on?`)
@@ -23,6 +27,8 @@ export const CreateTwit = () => {
       console.log(JSON.stringify(values, null, 2));
 
       mutation.mutate({
+        id: { id },
+        user: { user },
         content: values.content,
       });
     },
@@ -30,7 +36,7 @@ export const CreateTwit = () => {
 
   const mutation = useMutation((item) => client.post('/api/twits/create/', item));
   if (mutation.isSuccess) console.log(mutation.data.data);
-  if (mutation.isError) console.log(mutation.error);
+  if (mutation.isError) console.log(mutation.data);
 
   return (
     <Box>

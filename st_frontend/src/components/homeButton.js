@@ -7,7 +7,7 @@ const HomeButton = withRouter(({ history }) => {
   return (
     <div>
       <IconButton
-        color="action"
+        color="default"
         edge="start"
         onClick={() => {
           history.push('/');

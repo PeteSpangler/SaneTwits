@@ -7,9 +7,9 @@ const ProfileButton = withRouter(({ history }) => {
   return (
     <div>
       <IconButton
-        color="action"
+        color="default"
         onClick={() => {
-          history.push('/api/profiles');
+          history.push('/api-token-auth');
         }}
       >
         <AccountCircle />

@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework.authtoken import views
 import django.contrib.auth.urls
 from profiles.views import UserCreateView
+from tweets.views import CustomAuthToken
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,5 @@ urlpatterns = [
     path('api/profiles/', include('profiles.urls')),
     path('api-auth/', include ('rest_framework.urls')),
     path('register/', UserCreateView.as_view(), name='create_user'),
-    path('api-token-auth/', views.obtain_auth_token),
+    path('api-token-auth/', CustomAuthToken.as_view()),
 ]

@@ -11,9 +11,8 @@ class TweetLike(models.Model):
 
 class Tweet(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tweets")
-    likes = models.ManyToManyField(User, related_name="tweet_user", blank=True, through=TweetLike)
     content = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to='media', blank=True, null=True)
+    likes = models.ManyToManyField(User, related_name="tweet_user", blank=True, through=TweetLike)
     timestamp = models.DateTimeField(auto_now_add=True)
     class Meta:
         ordering = ['-id']

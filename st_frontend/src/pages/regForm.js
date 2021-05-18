@@ -4,8 +4,15 @@ import client from '../api/client';
 import * as yup from 'yup';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { useMutation } from 'react-query';
+import { useHistory } from 'react-router-dom';
 
 export const RegForm = () => {
+  const history = useHistory();
+
+  const mutation = useMutation((item) => client.post('/register/', item));
+  if (mutation.isSuccess) history.push('/');
+  if (mutation.isError) console.log(mutation.error);
+
   const validationSchema = yup.object({
     username: yup
       .string()
@@ -35,10 +42,6 @@ export const RegForm = () => {
       });
     },
   });
-
-  const mutation = useMutation((item) => client.post('/register/', item));
-  if (mutation.isSuccess) console.log(mutation.data);
-  if (mutation.isError) console.log(mutation.error);
 
   return (
     <Box>
