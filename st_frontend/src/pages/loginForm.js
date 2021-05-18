@@ -17,6 +17,7 @@ export const LoginForm = () => {
     setUser('Not Logged In');
     setUserToken('');
     setId('');
+    localStorage.clear();
   };
 
   const validationSchema = yup.object({
@@ -55,6 +56,7 @@ export const LoginForm = () => {
     setUserToken(mutation.data.data.token);
     setUser(mutation.data.data.username);
     setId(mutation.data.data.user_id);
+    localStorage.setItem('user', JSON.stringify(mutation.data.data));
     history.push('/');
   }
   if (mutation.isError) console.log(mutation.error);

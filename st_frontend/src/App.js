@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserContext, AuthContext, IdContext } from './contexts/userContext';
 import './styles/App.css';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
@@ -27,12 +27,21 @@ function App() {
   const [user, setUser] = useState('Not Logged In');
   const [userToken, setUserToken] = useState('');
   const [id, setId] = useState('');
+
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('{}');
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
+
   return (
-    <ThemeProvider theme={theme}>
-      <AuthContext.Provider value={{ userToken, setUserToken }}>
-        <UserContext.Provider value={{ user, setUser }}>
-          <IdContext.Provider value={{ id, setId }}>
-            <Router>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <AuthContext.Provider value={{ userToken, setUserToken }}>
+          <UserContext.Provider value={{ user, setUser }}>
+            <IdContext.Provider value={{ id, setId }}>
               <NavBar />
               <div>
                 <ul>
@@ -67,11 +76,11 @@ function App() {
                   </Route>
                 </Switch>
               </div>
-            </Router>
-          </IdContext.Provider>
-        </UserContext.Provider>
-      </AuthContext.Provider>
-    </ThemeProvider>
+            </IdContext.Provider>
+          </UserContext.Provider>
+        </AuthContext.Provider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
