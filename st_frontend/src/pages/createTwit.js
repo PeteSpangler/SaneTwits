@@ -27,7 +27,7 @@ export const CreateTwit = () => {
       console.log(JSON.stringify(values, null, 2));
 
       mutation.mutate({
-        id: { id },
+        user_id: { id },
         user: { user },
         content: values.content,
       });

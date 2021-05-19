@@ -6,6 +6,7 @@ import * as yup from 'yup';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { useMutation } from 'react-query';
 import { useHistory } from 'react-router-dom';
+import { Profile } from './profile';
 
 export const LoginForm = () => {
   const { user, setUser } = useContext(UserContext);
@@ -56,7 +57,9 @@ export const LoginForm = () => {
     setUserToken(mutation.data.data.token);
     setUser(mutation.data.data.username);
     setId(mutation.data.data.user_id);
-    localStorage.setItem('user', JSON.stringify(mutation.data.data));
+    localStorage.setItem('token', JSON.stringify(mutation.data.data.token));
+    localStorage.setItem('user', JSON.stringify(mutation.data.data.username));
+    localStorage.setItem('user_id', JSON.stringify(mutation.data.data.user_id));
     history.push('/');
   }
   if (mutation.isError) console.log(mutation.error);
@@ -103,6 +106,7 @@ export const LoginForm = () => {
         </Box>
       ) : (
         <div>
+          <Profile />
           <Button color="secondary" variant="contained" fullWidth onClick={() => Logout()}>
             Logout!
           </Button>

@@ -6,7 +6,7 @@ import { TwitCard } from '../components/twitCards';
 export const Home = () => {
   return (
     <div>
-      <Typography>This will be your tweet feed?</Typography>
+      <Typography variant="h4">FEED</Typography>
       <TwitCard />
       <div>
         <CreateButton />

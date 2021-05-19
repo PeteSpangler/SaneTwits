@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import client from '../api/client';
+import { client } from '../api/client';
 import * as yup from 'yup';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { useMutation } from 'react-query';

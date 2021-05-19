@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render
 from .models import Tweet
-from .serializers import TweetSerializer, TweetDetailSerializer
+from .serializers import TweetSerializer
 from rest_framework import generics, permissions, serializers
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 from rest_framework.response import Response
@@ -16,7 +16,7 @@ class TweetCreateAPIView(generics.CreateAPIView):
 class TweetRetrieveAPIView(generics.RetrieveAPIView):
     lookup_field = "id"
     queryset = Tweet.objects.all()
-    serializer_class = TweetDetailSerializer
+    serializer_class = TweetSerializer
 
 class TweetDestroyAPIView(generics.DestroyAPIView):
     lookup_field = "id"
@@ -24,7 +24,7 @@ class TweetDestroyAPIView(generics.DestroyAPIView):
 
 class TweetListAPIView(generics.ListAPIView):
     queryset = Tweet.objects.all()
-    serializer_class = TweetDetailSerializer
+    serializer_class = TweetSerializer
 
 
 class CustomAuthToken(ObtainAuthToken):

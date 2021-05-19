@@ -29,10 +29,26 @@ function App() {
   const [id, setId] = useState('');
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem('{}');
+    const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
       const foundUser = JSON.parse(loggedInUser);
       setUser(foundUser);
+    }
+  }, []);
+
+  useEffect(() => {
+    const checkToken = localStorage.getItem('token');
+    if (checkToken) {
+      const foundToken = JSON.parse(checkToken);
+      setUserToken(foundToken);
+    }
+  }, []);
+
+  useEffect(() => {
+    const checkID = localStorage.getItem('user_id');
+    if (checkID) {
+      const foundID = JSON.parse(checkID);
+      setId(foundID);
     }
   }, []);
 
