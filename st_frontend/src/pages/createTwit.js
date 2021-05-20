@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { useFormik } from 'formik';
-import client from '../api/client';
 import * as yup from 'yup';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { useMutation } from 'react-query';
 import { IdContext, UserContext } from '../contexts/userContext';
+import TwitPost from '../api/twitPost';
 
 export const CreateTwit = () => {
   const { user } = useContext(UserContext);
@@ -28,15 +28,14 @@ export const CreateTwit = () => {
 
       mutation.mutate({
         user_id: { id },
-        user: { user },
         content: values.content,
       });
     },
   });
 
-  const mutation = useMutation((item) => client.post('/api/twits/create/', item));
+  const mutation = useMutation((item) => TwitPost('/api/twits/create/', item));
   if (mutation.isSuccess) console.log(mutation.data.data);
-  if (mutation.isError) console.log(mutation.data);
+  if (mutation.isError) console.log(mutation.error.config);
 
   return (
     <Box>
