@@ -20,9 +20,9 @@ export const TwitCard = () => {
         data.map((item) => (
           <Card variant="outlined" key={item.id}>
             <CardContent>
-              <Typography>Username: {item.user.user}</Typography>
+              <Typography>Username: {item.user}</Typography>
               <Typography>{item.content}</Typography>
-              <Typography>Location: {item.user.location}</Typography>
+              {/* <Typography>Location: {item.user.location}</Typography> */}
               <Typography>Date: {item.timestamp}</Typography>
             </CardContent>
             <CardActions>

@@ -2,12 +2,12 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const getToken = localStorage.getItem('token');
-const csrftoken = Cookies.get('csrftoken');
+// const csrftoken = Cookies.get('csrftoken');
 const token = `Token ` + JSON.parse(getToken);
 
 const headers = {
   Authorization: token,
-  'XSRF-TOKEN': csrftoken,
+  // 'XSRF-TOKEN': csrftoken,
 };
 
 const TwitPost = axios.create({
