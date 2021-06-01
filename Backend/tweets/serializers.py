@@ -6,11 +6,12 @@ from profiles.serializers import ProfileSerializer
 
 class TweetSerializer(serializers.ModelSerializer):
     user = ProfileSerializer(source='user.profile', read_only=True)
+    slug = ProfileSerializer(source='slug.profile', read_only=True)
     absolute_url = serializers.SerializerMethodField()
     delete = serializers.SerializerMethodField()
     class Meta:
         model = Tweet
-        fields = [ 'id', 'user', 'author', 'content', 'absolute_url', 'delete',]
+        fields = [ 'id', 'author', 'user', 'slug', 'content', 'absolute_url', 'delete',]
 
     def get_absolute_url(self, obj):
         return reverse('tweet_detail', args=(obj.pk,))

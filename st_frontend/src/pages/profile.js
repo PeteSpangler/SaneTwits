@@ -21,6 +21,7 @@ export const Profile = () => {
           <Card variant="outlined" key={item.id}>
             <CardContent>
               <Typography>Username: {item.slug}</Typography>
+              <Typography>Date Joined: {item.date}</Typography>
               <Typography>Followers: {item.follower_count}</Typography>
               <Typography>Following: {item.following_count}</Typography>
             </CardContent>

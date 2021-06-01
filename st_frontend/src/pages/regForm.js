@@ -29,8 +29,8 @@ export const RegForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      username: '',
-      password: '',
+      username: 'username',
+      password: 'password',
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
