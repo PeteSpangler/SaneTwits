@@ -22,7 +22,7 @@ from tweets.views import CustomAuthToken
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/twits/', include('tweets.urls')),
+    path('api/tweets/', include('tweets.urls')),
     path('api/profiles/', include('profiles.urls')),
     path('api-auth/', include ('rest_framework.urls')),
     path('register/', UserCreateView.as_view(), name='create_user'),

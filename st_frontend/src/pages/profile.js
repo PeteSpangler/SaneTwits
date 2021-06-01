@@ -20,8 +20,7 @@ export const Profile = () => {
         data.map((item) => (
           <Card variant="outlined" key={item.id}>
             <CardContent>
-              <Typography>Username: {item.user}</Typography>
-              <Typography>Bio: {item.bio}</Typography>
+              <Typography>Username: {item.slug}</Typography>
               <Typography>Followers: {item.follower_count}</Typography>
               <Typography>Following: {item.following_count}</Typography>
             </CardContent>

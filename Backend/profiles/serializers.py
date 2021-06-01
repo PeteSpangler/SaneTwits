@@ -17,9 +17,9 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "user",
-            "location",
-            "bio",
-            "timestamp",
+            "followers",
+            "slug",
+            "date",
             "update",
             "is_following",
             "follower_count",

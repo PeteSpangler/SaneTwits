@@ -42,8 +42,6 @@ export const LoginForm = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      //   console.log(JSON.stringify(values, null, 2));
-
       mutation.mutate({
         username: values.username,
         password: values.password,
@@ -53,7 +51,7 @@ export const LoginForm = () => {
 
   const mutation = useMutation((item) => client.post('/api-token-auth/', item));
   if (mutation.isSuccess) {
-    console.log(mutation.data);
+    console.log(mutation.data.config);
     setUserToken(mutation.data.data.token);
     setUser(mutation.data.data.username);
     setId(mutation.data.data.user_id);
@@ -62,7 +60,7 @@ export const LoginForm = () => {
     localStorage.setItem('user_id', JSON.stringify(mutation.data.data.user_id));
     history.push('/');
   }
-  if (mutation.isError) console.log(mutation.error);
+  if (mutation.isError) console.log(mutation.error.config);
 
   return (
     <Box>

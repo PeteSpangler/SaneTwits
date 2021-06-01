@@ -3,12 +3,13 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Box, Button, TextField, Typography } from '@material-ui/core';
 import { useMutation } from 'react-query';
-import { IdContext, UserContext } from '../contexts/userContext';
-import TwitPost from '../api/twitPost';
+import { IdContext } from '../contexts/userContext';
+import client from '../api/client';
+import { useHistory } from 'react-router-dom';
 
 export const CreateTwit = () => {
-  const { user } = useContext(UserContext);
   const { id } = useContext(IdContext);
+  const history = useHistory();
 
   const validationSchema = yup.object({
     content: yup
@@ -20,21 +21,24 @@ export const CreateTwit = () => {
 
   const formik = useFormik({
     initialValues: {
+      author: id,
       content: 'Your thoughts?',
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
 
+    onSubmit: (values) => {
       mutation.mutate({
-        user_id: { id },
+        author: id,
         content: values.content,
       });
     },
   });
 
-  const mutation = useMutation((item) => TwitPost('/api/twits/create/', item));
-  if (mutation.isSuccess) console.log(mutation.data.data);
+  const mutation = useMutation((item) => client.post('api/tweets/create/', item));
+  if (mutation.isSuccess) {
+    console.log(mutation.data.data);
+    history.push('/');
+  }
   if (mutation.isError) console.log(mutation.error.config);
 
   return (
