@@ -53,10 +53,10 @@ export const LoginForm = () => {
   if (mutation.isSuccess) {
     console.log(mutation.data.config);
     setUserToken(mutation.data.data.token);
-    setUser(mutation.data.data.username);
+    setUser(mutation.data.data.username.toLowerCase());
     setId(mutation.data.data.user_id);
     localStorage.setItem('token', JSON.stringify(mutation.data.data.token));
-    localStorage.setItem('user', JSON.stringify(mutation.data.data.username));
+    localStorage.setItem('user', JSON.stringify(mutation.data.data.username).toLowerCase());
     localStorage.setItem('user_id', JSON.stringify(mutation.data.data.user_id));
     history.push('/');
   }

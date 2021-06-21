@@ -15,7 +15,7 @@ class ProfileCreateAPIView(generics.CreateAPIView):
     serializer_class = ProfileSerializer
 
 class ProfileRetrieveAPIView(generics.RetrieveAPIView):
-    lookup_field = "user"
+    lookup_field = "slug"
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
@@ -24,7 +24,7 @@ class ProfileListAPIView(generics.ListAPIView):
     serializer_class = ProfileSerializer
 
 class ProfileRetrieveUpdateAPIView(generics.RetrieveUpdateAPIView):
-    lookup_field = "user"
+    lookup_field = "slug"
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     parser_classes = [MultiPartParser, FormParser]
